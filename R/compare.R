@@ -53,5 +53,14 @@ compare = function(x, marker=1, verbose=TRUE,
   }
 
   RESULT = add_column(RESULT, lnlik = log(RESULT$likelihood), .after = "likelihood")
+
+  if(verbose) {
+    check  = all_agree(RESULT)
+    if(check)
+      cat("\n===> ALL PROGRAMS AGREE! <===\n")
+    else
+      cat("\n===> ANSWERS ARE NOT THE SAME <===\n")
+  }
+
   RESULT
 }
