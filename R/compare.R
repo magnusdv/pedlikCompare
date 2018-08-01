@@ -21,19 +21,33 @@
 compare = function(x, marker=1, verbose=TRUE,
                    programs=c("pedprobr", "paramlink", "Familias", "ES",
                               "merlin")) {
+  if(!is.ped(x))
+    stop("Input is not a `ped` object", call.=F)
   if(is.marker(marker)) {
     x = setMarkers(x, list(marker))
     marker = 1
   }
-  x = selectMarkers(x, marker)
+  else {
+    if(!hasMarkers(x)) stop("The pedigree has no attached markers")
+    midx = whichMarkers(x, marker)
+    if(length(midx) == 0) stop("Marker not found")
+    if(length(midx) > 1) stop("Multiple markers selected")
+    x = selectMarkers(x, midx)
+  }
 
-  #if(is_Xmarker(x$markerdata[[1]])) stop("Sorry, only autosomal markers for now.")
+  programs = match.arg(programs, several.ok = TRUE)
 
   RESULT = tibble(program=character(), likelihood=numeric(), time=numeric())
-
   for(prog in programs) {
+
     FUN = get(sprintf("likelihood_%s", prog))
-    res = FUN(x, verbose=verbose)
+
+    res = tryCatch(FUN(x, verbose=verbose), error=function(e) e)
+    if(inherits(res, "error")) {
+      if(verbose) message(toString(res))
+      next
+    }
+
     if(length(res))
       RESULT = add_case(RESULT, !!!res)
   }

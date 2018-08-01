@@ -32,3 +32,14 @@ test_that("all programs agree in inbred X-linked", {
   res = compare(x, m, verbose=F)
   expect_true(all_agree(res, q))
 })
+
+test_that("errors are caught", {
+  x = quadHalfFirstCousins()
+  m = marker(x, '10' = 1:2)
+  x = setMarkers(x, m)
+  expect_error(likelihood_pedprobr(x, verbose=F),
+               "This pedigree requires founders as loop breakers")
+  res = compare(x, m, verbose=F)
+  expect_equal(res$program, c("Familias","ElstonStewart","merlin"))
+  expect_true(all_agree(res))
+})
