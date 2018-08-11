@@ -79,12 +79,12 @@ ped2FamiliasLoci = function(x) {
   if(!hasMarkers(x))
     return(NULL)
 
-  # Replace NA marker names with dummy names
-  mnames = name(x, 1:nMarkers(x))
-  if(anyNA(mnames)) {
-    idx = which(is.na(mnames))
-    name(x, idx) = paste0("m", idx)
-  }
+  ## Replace NA marker names with dummy names
+  #mnames = name(x, 1:nMarkers(x))
+  #if(anyNA(mnames)) {
+  #  idx = which(is.na(mnames))
+  #  # name(x, idx) = paste0("m", idx) 
+  #}
 
   lapply(x$markerdata, marker2FamiliasLocus)
 }
