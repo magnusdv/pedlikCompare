@@ -54,7 +54,7 @@ ped2Familias = function(x) {
 }
 
 ped2FamiliasPedigree = function(x) {
-  id = x$LABELS
+  id = labels(x)
   dadid = momid = rep(NA, pedsize(x))
   dadid[x$FID > 0] = id[x$FID]
   momid[x$MID > 0] = id[x$MID]
@@ -66,7 +66,7 @@ ped2FamiliasDatamatrix = function(x) {
   if(!hasMarkers(x))
     return(NULL)
 
-  ids = x$LABELS
+  ids = labels(x)
   mlist = x$markerdata
 
   # TODO: lag alleleMatrix() i pedtools
