@@ -45,7 +45,7 @@ likelihood_ES = function(x, verbose=T) {
   geno[ALTcount==0 & MISScount==1] = 0:1
 
   p = afreq(m)[1]
-  es_ped = ElstonStewart::es.pedigree(id=x$ID, father=x$FID, mother=x$MID, sex=x$SEX,
+  es_ped = ElstonStewart::es.pedigree(id=1:pedsize(x), father=x$FIDX, mother=x$MIDX, sex=x$SEX,
                                       pheno=rep(0, N), geno=geno, famid="1")
   modele.di = ElstonStewart::modele.di
   st = Sys.time()

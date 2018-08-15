@@ -56,8 +56,8 @@ ped2Familias = function(x) {
 ped2FamiliasPedigree = function(x) {
   id = labels(x)
   dadid = momid = rep(NA, pedsize(x))
-  dadid[x$FID > 0] = id[x$FID]
-  momid[x$MID > 0] = id[x$MID]
+  dadid[x$FIDX > 0] = id[x$FIDX]
+  momid[x$MIDX > 0] = id[x$MIDX]
   sex = ifelse(x$SEX == 1, "male", "female")
   Familias::FamiliasPedigree(id, dadid, momid, sex)
 }
