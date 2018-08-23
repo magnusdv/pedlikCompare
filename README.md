@@ -16,40 +16,46 @@ Consider the pedigree shown below, where the parents are heterozygous for some m
 ``` r
 library(pedtools)
 
-x = nuclearPed(fa="father", mo="mother", child="boy")
+x = nuclearPed(fa = "father", mo = "mother", child = "boy")
 m = marker(x, father = 1:2, mother = 1:2, boy = 2)
 
 # Attach the marker
 x = setMarkers(x, m)
-
-# Plot
-plot(x, marker=1)
 ```
 
-<img src="README-example-setup-1.png" style="display: block; margin: auto;" />
+Plot the pedigree to check that everything is ok.
+
+``` r
+plot(x, marker = 1)
+```
+
+<img src="man/figures/README-example-1.png" style="display: block; margin: auto;" />
 
 Now load `pedlikCompare` and let it perform its magic! The crucial function is `compare()`:
 
 ``` r
 library(pedlikCompare)
 result = compare(x)
-#> Program `pedprobr`...finished in 0.02 seconds
-#> Program `paramlink`...finished in 0.00 seconds
-#> Program `merlin`...finished in 0.28 seconds
-#> Program `Familias`...finished in 0.00 seconds
+#> Program `pedprobr`...finished in 0.06 seconds
+#> Program `paramlink`...finished in 0.02 seconds
+#> Program `Familias`...finished in 0.02 seconds
 #> Program `ElstonStewart`...finished in 0.00 seconds
+#> Program `merlin`...finished in 0.35 seconds
+#> 
+#> ===> ALL PROGRAMS AGREE! <===
+
 result
 #> # A tibble: 5 x 4
 #>   program       likelihood lnlik   time
 #>   <chr>              <dbl> <dbl>  <dbl>
-#> 1 pedprobr          0.0625 -2.77 0.0156
-#> 2 paramlink         0.0625 -2.77 0     
-#> 3 merlin            0.0625 -2.77 0.283 
-#> 4 Familias          0.0625 -2.77 0     
-#> 5 ElstonStewart     0.0625 -2.77 0
+#> 1 pedprobr          0.0625 -2.77 0.0634
+#> 2 paramlink         0.0625 -2.77 0.0156
+#> 3 Familias          0.0625 -2.77 0.0156
+#> 4 ElstonStewart     0.0625 -2.77 0     
+#> 5 merlin            0.0625 -2.77 0.349
 ```
 
-The numbers indeed look the same. However the numbers are rounded when printed, so to be sure we use the `all_agree()` function. If you happen to know the exact likelihood, this can be supplied in the optional `answer` argument. In our example it is `1/16`, so the command becomes:
+The likelihoods indeed look the same, but the numbers are rounded when printed. To be sure, we can use the `all_agree()` function. If you happen to know the exact likelihood, this can be supplied in the optional `answer` argument. In our example it is `1/16`, so the command becomes:
 
 ``` r
 all_agree(result, answer = 1/16)

@@ -10,7 +10,7 @@ output:
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-"
 )
 ```
 
@@ -28,26 +28,32 @@ easy and fun to compare all of these programs, both in terms of numeric accuracy
 
 Consider the pedigree shown below, where the parents are heterozygous for some marker, while the child is homozygous for the '2' allele. For simplicity we assume that the marker is a SNP with equal allele frequencies. We set this up with `pedtools` as follows:
 
-```{r example-setup,  fig.align="center", fig.width = 2.5, fig.height = 3}
+```{r}
 library(pedtools)
 
-x = nuclearPed(fa="father", mo="mother", child="boy")
+x = nuclearPed(fa = "father", mo = "mother", child = "boy")
 m = marker(x, father = 1:2, mother = 1:2, boy = 2)
 
 # Attach the marker
 x = setMarkers(x, m)
+```
 
-# Plot
-plot(x, marker=1)
+Plot the pedigree to check that everything is ok.
+```{r eval = FALSE}
+plot(x, marker = 1)
+```
+```{r example, echo = FALSE, fig.align="center", fig.width = 2.5, fig.height = 3}
+plot(x, marker=1, margins = c(0,1,1,1))
 ```
 
 Now load `pedlikCompare` and let it perform its magic! The crucial function is `compare()`:
 ```{r}
 library(pedlikCompare)
 result = compare(x)
+
 result
 ```
-The numbers indeed look the same. However the numbers are rounded when printed, so to be sure we use the `all_agree()` function. If you happen to know the exact likelihood, this can be supplied in the optional `answer` argument. In our example it is `1/16`, so the command becomes:
+The likelihoods indeed look the same, but the numbers are rounded when printed. To be sure, we can use the `all_agree()` function. If you happen to know the exact likelihood, this can be supplied in the optional `answer` argument. In our example it is `1/16`, so the command becomes:
 ```{r}
 all_agree(result, answer = 1/16)
 ```
