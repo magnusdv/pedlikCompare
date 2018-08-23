@@ -10,7 +10,7 @@ test_that("all programs work", {
 })
 
 test_that("all programs agree in inbred example", {
-  x = halfCousinsPed(0, child=T)
+  x = halfCousinPed(0, child=T)
   p = 0.9; q = 1-p
   m = marker(x, '6' = 2, alleles=1:2, afreq=c(p,q))
   res = compare(x, m, verbose=F)
@@ -26,7 +26,7 @@ test_that("all programs agree in simple X-linked example", {
 })
 
 test_that("all programs agree in inbred X-linked", {
-  x = halfCousinsPed(0, child=T)
+  x = halfCousinPed(0, child=T)
   p = 0.9; q = 1-p
   m = marker(x, '6' = 2, alleles=1:2, afreq=c(p,q), chrom=23)
   res = compare(x, m, verbose=F)
