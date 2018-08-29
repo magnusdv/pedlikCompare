@@ -22,16 +22,16 @@ compare = function(x, marker=1, verbose=TRUE,
                    programs=c("pedprobr", "paramlink", "Familias", "ES",
                               "merlin")) {
   if(!is.ped(x))
-    stop("Input is not a `ped` object", call.=F)
+    stop2("Input is not a `ped` object")
   if(is.marker(marker)) {
     x = setMarkers(x, list(marker))
     marker = 1
   }
   else {
-    if(!hasMarkers(x)) stop("The pedigree has no attached markers")
+    if(!hasMarkers(x)) stop2("The pedigree has no attached markers")
     midx = whichMarkers(x, marker)
-    if(length(midx) == 0) stop("Marker not found")
-    if(length(midx) > 1) stop("Multiple markers selected")
+    if(length(midx) == 0) stop2("Marker not found")
+    if(length(midx) > 1) stop2("Multiple markers selected")
     x = selectMarkers(x, midx)
   }
 

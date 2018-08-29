@@ -35,7 +35,7 @@ likelihood_paramlink = function(x, verbose=T, ...) {
 
 ped2linkdat = function(x, verbose=F) {
   if (!requireNamespace("paramlink", quietly = TRUE))
-    stop("Package 'paramlink' is not installed.", call. = FALSE)
+    stop2("Package 'paramlink' is not installed")
 
   famid = x$FAMID
   if(famid == "") famid = 1
