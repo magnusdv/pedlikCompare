@@ -83,7 +83,7 @@ ped2FamiliasLoci = function(x) {
   #mnames = name(x, 1:nMarkers(x))
   #if(anyNA(mnames)) {
   #  idx = which(is.na(mnames))
-  #  # name(x, idx) = paste0("m", idx) 
+  #  # name(x, idx) = paste0("m", idx)
   #}
 
   lapply(x$markerdata, marker2FamiliasLocus)
@@ -93,14 +93,14 @@ marker2FamiliasLocus = function(m) {
   als = alleles(m)
   afr = afreq(m)
   mname = name(m)
-  mutmat = attr(m, "mutmat")
+  mutmod = attr(m, "mutmod")
 
-  if(is.null(mutmat))
+  if(is.null(mutmod))
     Familias::FamiliasLocus(allelenames = als, frequencies = afr, name = mname)
   else
     Familias::FamiliasLocus(allelenames = als, frequencies = afr, name = mname,
                             MutationModel = "Custom",
-                            maleMutationMatrix = mutmat$male,
-                            femaleMutationMatrix = mutmat$female)
+                            maleMutationMatrix = mutmod$male,
+                            femaleMutationMatrix = mutmod$female)
 }
 

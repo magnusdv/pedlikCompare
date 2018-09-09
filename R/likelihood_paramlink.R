@@ -59,7 +59,7 @@ ped2linkdat = function(x, verbose=F) {
              alleles = alleles(m),
              afreq = as.vector(afreq(m)),
              missing = 0,
-             mutmat = attr(m, "mutmat"),
+             mutmat = mutmod(m),
              class = "marker")
       m
     })
