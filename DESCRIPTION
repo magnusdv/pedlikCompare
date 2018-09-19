@@ -11,16 +11,18 @@ Description: Several R packages compute pedigree likelihoods, including
   timings. The pedtools package is used as starting point for creating
   pedigrees and markers, which are then converted to other formats as 
   needed.
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.5.0),
+    pedtools
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: pedtools,
-    tibble
+Imports: tibble
 Suggests: pedprobr,
     paramlink,
     Familias,
     ElstonStewart,
-    testthat
+    testthat,
+    forrel,
+    pedmut
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.0
