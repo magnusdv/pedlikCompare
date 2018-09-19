@@ -14,7 +14,7 @@ randomTestCase = function(pedname = NULL, subsettype = NULL, ids = NULL, swapsex
               NUC = nuclearPed(1),
               LIN = linearPed(2),
               HS = halfSibPed(),
-              ANC = relabel(addParents(linearPed(2), 4, verbose = F), 1:7),
+              ANC = ancestralPed(2),
               FMS = fullSibMating(1),
               RAND = "random")
 
@@ -23,7 +23,7 @@ randomTestCase = function(pedname = NULL, subsettype = NULL, ids = NULL, swapsex
                  NUC = list(1,2,3,2:3),
                  LIN = list(1, 3, 5),
                  HS = list(4:5),
-                 ANC = list(1,3,4,6,7, c(1,2), c(1,7), c(4,7), c(1,4,7)),
+                 ANC = list(1,5,6,7,c(1,3), c(1,7), c(3,7), c(1,4,7), 5:7),
                  FMS = list(6, 5:6, c(1,6)),
                  RAND = list())
 
@@ -174,7 +174,6 @@ compareRandom = function(n = 1, programs = NA, verbose = F, store_bad = FALSE, .
 
     if(verbose) {
       time = (proc.time() - st)['elapsed']
-      #diff = results$time[1] - results$time[2]
       cat(sprintf(" Time = %.2f sec\n", time))
     }
 
@@ -199,7 +198,7 @@ compareRandom = function(n = 1, programs = NA, verbose = F, store_bad = FALSE, .
     print(summaryCases(BAD))
     return(BAD)
   }
-  invisible(p)
+  invisible(case)
 }
 
 summaryCases = function(x) {
