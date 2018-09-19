@@ -41,5 +41,8 @@ all_agree = function(df, answer=NULL) {
 
 # Hack to find the number of decimals in a number
 decims = function(x) {
-  min(which( x*10^(0:20) == floor(x*10^(0:20)) )) - 1
+  tol = .Machine$double.eps^0.5
+
+  shift = x*10^(0:20)
+  min(which(abs(shift - round(shift)) < tol)) - 1
 }
