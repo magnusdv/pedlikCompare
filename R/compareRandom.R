@@ -15,7 +15,7 @@ randomTestCase = function(pedname = NULL, subsettype = NULL, ids = NULL, swapsex
               LIN = linearPed(2),
               HS = halfSibPed(),
               ANC = ancestralPed(2),
-              FMS = fullSibMating(1),
+              FSM = fullSibMating(1),
               RAND = "random")
 
   # Specially interesting subsets of genotyped individuals.
@@ -24,7 +24,7 @@ randomTestCase = function(pedname = NULL, subsettype = NULL, ids = NULL, swapsex
                  LIN = list(1, 3, 5),
                  HS = list(4:5),
                  ANC = list(1,5,6,7,c(1,3), c(1,7), c(3,7), c(1,4,7), 5:7),
-                 FMS = list(6, 5:6, c(1,6)),
+                 FSM = list(6, 5:6, c(1,6)),
                  RAND = list())
 
   # Pedigree
