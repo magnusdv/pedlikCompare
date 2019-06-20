@@ -53,7 +53,7 @@ ped2linkdat = function(x, verbose=F) {
       attributes(m) =
         list(dim = dim(m),
              name = name(m),
-             chrom = if(is_Xmarker(m)) 23 else chrom(m),
+             chrom = if(isXmarker(m)) 23 else chrom(m),
              pos = posCm(m),
              nalleles = nAlleles(m),
              alleles = alleles(m),

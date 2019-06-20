@@ -1,6 +1,6 @@
 #' Pedigree likelihood by MERLIN
 #'
-#' This uses the MERLIN wrapper [pedprobr::likelihood_merlin()] to Compute
+#' This uses the MERLIN wrapper [pedprobr::likelihoodMerlin()] to Compute
 #' the likelihood of the first marker. Skipped if the marker models mutations
 #' (since MERLIN does not handle this).
 #'
@@ -10,7 +10,7 @@
 #' @return A list with 3 entries:
 #'
 #'   * `program` : "merlin"
-#'   * `likelihood` : the likelihood as computed by [pedprobr::likelihood_merlin()]
+#'   * `likelihood` : the likelihood as computed by [pedprobr::likelihoodMerlin()]
 #'   * `time` : timing in seconds
 #'
 #' @export
@@ -25,7 +25,7 @@ likelihood_merlin = function(x, verbose=T) {
     return()
   }
   st = Sys.time()
-  res = pedprobr::likelihood_merlin(x, markers=1)
+  res = pedprobr::likelihoodMerlin(x, markers=1)
 
   time = as.numeric(Sys.time()-st)
   if(verbose) cat(sprintf("finished in %.2f seconds\n", time))

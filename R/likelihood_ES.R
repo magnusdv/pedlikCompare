@@ -30,7 +30,7 @@ likelihood_ES = function(x, verbose=T) {
     if(verbose) cat("skipped. Marker allows mutations\n")
     return()
   }
-  if(is_Xmarker(m)) {
+  if(isXmarker(m)) {
     if(verbose) cat("skipped. X-linked markers are not implemented for the ElstonStewart package\n")
     return()
   }

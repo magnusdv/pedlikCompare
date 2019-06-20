@@ -19,7 +19,7 @@ likelihood_Familias = function(x, verbose=T) {
     if(verbose) cat("skipped. Package not installed\n")
     return()
   }
-  if(is_Xmarker(x$markerdata[[1]])) {
+  if(isXmarker(x$markerdata[[1]])) {
     if(verbose) cat("skipped. X-linked markers are not implemented for Familias\n")
     return()
   }

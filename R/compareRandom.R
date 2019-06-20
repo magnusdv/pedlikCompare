@@ -1,6 +1,6 @@
 
 #' @importFrom stats runif rpois
-randomTestCase = function(pedname = NULL, subsettype = NULL, ids = NULL, swapsex = NULL,
+randomTestCase = function(ped = NULL, pedname = NULL, ids = NULL, swapsex = NULL,
                           Xchrom = NULL, nall = NULL, alsChar = NULL, alsPerm = NULL,
                           muttype = NULL, relab = NULL, reorder = NULL) {
 
@@ -9,7 +9,8 @@ randomTestCase = function(pedname = NULL, subsettype = NULL, ids = NULL, swapsex
   if(!requireNamespace("pedmut", quietly = TRUE))
     stop2("Package `pedmut` is not installed")
 
-  # Pedigrees to choose from
+
+  # Special pedigrees
   PEDS = list(SING = singleton(1),
               NUC = nuclearPed(1),
               LIN = linearPed(2),
@@ -27,40 +28,54 @@ randomTestCase = function(pedname = NULL, subsettype = NULL, ids = NULL, swapsex
                  FSM = list(6, 5:6, c(1,6)),
                  RAND = list())
 
-  # Pedigree
-  if(is.null(pedname))
-    pedname = sample(names(PEDS), size = 1)
 
-  if(pedname == "RAND") {
-    founders = rpois(1, 2) + 1
-    g = sample(founders + 2:3, size= 1)
-    ped = randomPed(g, founders)
-    if(is.pedList(ped)) ped = ped[[1]]
+  ### Pedigree
+  if(is.null(ped)) {
+
+    # Pedigree
+    if(is.null(pedname))
+      pedname = sample(names(PEDS), size = 1)
+
+    if(pedname == "RAND") {
+      founders = rpois(1, 2) + 1
+      g = sample(founders + 2:3, size= 1)
+      ped = randomPed(g, founders)
+      if(is.pedList(ped)) ped = ped[[1]]
+    }
+    else
+      ped = PEDS[[pedname]]
+
+    # permute genders?
+    if(is.null(swapsex))
+      swapsex = sample(c(T,F), 1)
+    if(swapsex) {
+      swap_ids = labels(ped)[sample(c(T,F), pedsize(ped), replace = T)]
+      ped = swapSex(ped, swap_ids, verbose = F)
+    }
   }
-  else
-    ped = PEDS[[pedname]]
+  else {
+    stopifnot(is.ped(ped))
+    ped$markerdata = NULL
+    for(arg in c("pedname", "swapsex", "relab", "reorder"))
+      if(!is.null(get(arg))) stop2("When `ped` is given, `", arg, "` must be NULL")
+    swapsex = relab = reorder = FALSE
+    pedname = NA
+  }
 
   # Subset of genotyped individuals
   if(is.null(ids)) {
     randomsub = labels(ped)[sample(c(T,F), pedsize(ped), replace = T)]
-    subsetList = c(Fixed = SUBSETS[[pedname]],
-                   list(None = character(0),
-                        Leaves = leaves(ped),
-                        All = labels(ped),
-                        Random = randomsub))
+    subsetList = list(None = character(0),
+                      Leaves = leaves(ped),
+                      All = labels(ped),
+                      Random = randomsub)
+    if(!is.null(pedname))
+      subsetList = c(subsetList, Fixed = SUBSETS[[pedname]])
 
-    if(is.null(subsettype))
-      subsettype = sample(names(subsetList), size = 1)
-
-    ids = subsetList[[subsettype]]
+    ids = sample(subsetList, size = 1)[[1]]
   }
-
-  # permute genders?
-  if(is.null(swapsex))
-    swapsex = sample(c(T,F), 1)
-  if(swapsex) {
-    swap_ids = labels(ped)[sample(c(T,F), pedsize(ped), replace = T)]
-    ped = swapSex(ped, swap_ids, verbose = F)
+  else {
+    stopifnot(all(ids %in% labels(ped)))
   }
 
   ######################
@@ -117,6 +132,7 @@ randomTestCase = function(pedname = NULL, subsettype = NULL, ids = NULL, swapsex
   #### Simulate 1 marker
   x = forrel::simpleSim(ped, N = 1, alleles = als, afreq = freqs, ids = ids,
                         mutmod = mutmod, Xchrom = Xchrom, verbose = F)
+  x = reorderPed(x, labels(ped))
 
   m = x$markerdata[[1]]
   geno = paste(format(m)[ids], collapse = ", ")
@@ -207,3 +223,5 @@ summaryCases = function(x) {
                       "alsChar", "alsPerm", "alleles", "muttype", "models",
                       "mutrate", "relabel", "reorder")])))
 }
+
+

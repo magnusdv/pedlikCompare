@@ -15,12 +15,12 @@ likelihood_merlin(x, verbose = T)
 A list with 3 entries:
 \itemize{
 \item \code{program} : "merlin"
-\item \code{likelihood} : the likelihood as computed by \code{\link[pedprobr:likelihood_merlin]{pedprobr::likelihood_merlin()}}
+\item \code{likelihood} : the likelihood as computed by \code{\link[pedprobr:likelihoodMerlin]{pedprobr::likelihoodMerlin()}}
 \item \code{time} : timing in seconds
 }
 }
 \description{
-This uses the MERLIN wrapper \code{\link[pedprobr:likelihood_merlin]{pedprobr::likelihood_merlin()}} to Compute
+This uses the MERLIN wrapper \code{\link[pedprobr:likelihoodMerlin]{pedprobr::likelihoodMerlin()}} to Compute
 the likelihood of the first marker. Skipped if the marker models mutations
 (since MERLIN does not handle this).
 }
