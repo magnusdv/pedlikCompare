@@ -159,7 +159,6 @@ randomTestCase = function(ped = NULL, pedname = NULL, ids = NULL, swapsex = NULL
 }
 
 #' @importFrom utils setTxtProgressBar txtProgressBar
-#' @export
 compareRandom = function(n = 1, programs = NA, verbose = F, store_bad = FALSE, ...) {
   if(store_bad)
     BAD = list()

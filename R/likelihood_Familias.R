@@ -63,28 +63,12 @@ ped2FamiliasPedigree = function(x) {
 }
 
 ped2FamiliasDatamatrix = function(x) {
-  if(!hasMarkers(x))
-    return(NULL)
-
-  ids = labels(x)
-  mlist = x$markerdata
-
-  # TODO: lag alleleMatrix() i pedtools
-  allelematrix = pedtools:::.prettyMarkers(mlist, missing=NA)
-
-  as.data.frame(allelematrix, row.names=ids, stringsAsFactors=F)
+  getAlleles(x)
 }
 
 ped2FamiliasLoci = function(x) {
   if(!hasMarkers(x))
     return(NULL)
-
-  ## Replace NA marker names with dummy names
-  #mnames = name(x, 1:nMarkers(x))
-  #if(anyNA(mnames)) {
-  #  idx = which(is.na(mnames))
-  #  # name(x, idx) = paste0("m", idx)
-  #}
 
   lapply(x$markerdata, marker2FamiliasLocus)
 }

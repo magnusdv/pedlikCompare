@@ -2,7 +2,6 @@
 
 export(all_agree)
 export(compare)
-export(compareRandom)
 export(likelihood_ES)
 export(likelihood_Familias)
 export(likelihood_merlin)
