@@ -20,7 +20,7 @@ likelihood_merlin = function(x, verbose=T) {
     if(verbose) cat("skipped. Package not installed\n")
     return()
   }
-  if(allowsMutations(x$markerdata[[1]])) {
+  if(allowsMutations(x$MARKERS[[1]])) {
     if(verbose) cat("skipped. Marker allows mutations\n")
     return()
   }

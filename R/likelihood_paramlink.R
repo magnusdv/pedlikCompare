@@ -40,9 +40,9 @@ ped2linkdat = function(x, verbose=F) {
   famid = x$FAMID
   if(famid == "") famid = 1
 
-  mlist = x$markerdata
+  mlist = x$MARKERS
 
-  x$markerdata = NULL
+  x$MARKERS = NULL
   p = cbind(famid, as.matrix(x), 1)
   colnames(p) = c("FAMID", "ID", "FID", "MID", "SEX", "AFF")
 

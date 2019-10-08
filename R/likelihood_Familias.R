@@ -19,7 +19,7 @@ likelihood_Familias = function(x, verbose=T) {
     if(verbose) cat("skipped. Package not installed\n")
     return()
   }
-  if(isXmarker(x$markerdata[[1]])) {
+  if(isXmarker(x$MARKERS[[1]])) {
     if(verbose) cat("skipped. X-linked markers are not implemented for Familias\n")
     return()
   }
@@ -70,7 +70,7 @@ ped2FamiliasLoci = function(x) {
   if(!hasMarkers(x))
     return(NULL)
 
-  lapply(x$markerdata, marker2FamiliasLocus)
+  lapply(x$MARKERS, marker2FamiliasLocus)
 }
 
 marker2FamiliasLocus = function(m) {

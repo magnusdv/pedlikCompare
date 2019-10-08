@@ -55,7 +55,7 @@ randomTestCase = function(ped = NULL, pedname = NULL, ids = NULL, swapsex = NULL
   }
   else {
     stopifnot(is.ped(ped))
-    ped$markerdata = NULL
+    ped$MARKERS = NULL
     for(arg in c("pedname", "swapsex", "relab", "reorder"))
       if(!is.null(get(arg))) stop2("When `ped` is given, `", arg, "` must be NULL")
     swapsex = relab = reorder = FALSE
@@ -134,7 +134,7 @@ randomTestCase = function(ped = NULL, pedname = NULL, ids = NULL, swapsex = NULL
                         mutmod = mutmod, Xchrom = Xchrom, verbose = F)
   x = reorderPed(x, labels(ped))
 
-  m = x$markerdata[[1]]
+  m = x$MARKERS[[1]]
   geno = paste(format(m)[ids], collapse = ", ")
 
   # Relabel?
