@@ -20,12 +20,12 @@ likelihood_merlin = function(x, verbose=T) {
     if(verbose) cat("skipped. Package not installed\n")
     return()
   }
-  if(allowsMutations(x$MARKERS[[1]])) {
-    if(verbose) cat("skipped. Marker allows mutations\n")
+  if(allowsMutations(x, 1)) {
+    if(verbose) cat("skipped (mutations are not implemented)\n")
     return()
   }
   st = Sys.time()
-  res = pedprobr::likelihoodMerlin(x, markers=1)
+  res = pedprobr::likelihoodMerlin(x, markers = 1, verbose = FALSE)
 
   time = as.numeric(Sys.time()-st)
   if(verbose) cat(sprintf("finished in %.2f seconds\n", time))

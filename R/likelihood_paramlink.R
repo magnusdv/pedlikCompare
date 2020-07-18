@@ -13,6 +13,7 @@
 #'   * `likelihood` : the likelihood as computed by [paramlink::likelihood()]
 #'   * `time` : timing in seconds
 #'
+#' @importFrom utils capture.output
 #' @export
 likelihood_paramlink = function(x, verbose=T, ...) {
   if(verbose) cat("Program `paramlink`...")
@@ -24,7 +25,9 @@ likelihood_paramlink = function(x, verbose=T, ...) {
   y = ped2linkdat(x, verbose=F)
 
   st = Sys.time()
-  res = paramlink::likelihood(y, locus1=1, ...)
+  capture.output( # to avoid annoying "Tip: To optimize speed consider breaking ..."
+    res <- paramlink::likelihood(y, locus1=1, ...)
+  )
 
   time = as.numeric(Sys.time() - st)
   if(verbose) cat(sprintf("finished in %.2f seconds\n", time))
@@ -37,8 +40,9 @@ ped2linkdat = function(x, verbose=F) {
   if (!requireNamespace("paramlink", quietly = TRUE))
     stop2("Package 'paramlink' is not installed")
 
-  famid = x$FAMID
-  if(famid == "") famid = 1
+  # famid = x$FAMID
+  # if(famid == "") famid = 1
+  famid = 1
 
   mlist = x$MARKERS
 
@@ -54,7 +58,7 @@ ped2linkdat = function(x, verbose=F) {
         list(dim = dim(m),
              name = name(m),
              chrom = if(isXmarker(m)) 23 else chrom(m),
-             pos = posCm(m),
+             pos = posMb(m),
              nalleles = nAlleles(m),
              alleles = alleles(m),
              afreq = as.vector(afreq(m)),

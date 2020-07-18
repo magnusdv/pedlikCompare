@@ -19,7 +19,7 @@ likelihood_Familias = function(x, verbose=T) {
     if(verbose) cat("skipped. Package not installed\n")
     return()
   }
-  if(isXmarker(x$MARKERS[[1]])) {
+  if(isXmarker(x, 1)) {
     if(verbose) cat("skipped. X-linked markers are not implemented for Familias\n")
     return()
   }
@@ -32,10 +32,10 @@ likelihood_Familias = function(x, verbose=T) {
                                     FamiliasData$datamatrix)
   res = res$likelihoods
 
-  time=as.numeric(Sys.time() - st)
+  time = as.numeric(Sys.time() - st)
   if(verbose) cat(sprintf("finished in %.2f seconds\n", time))
 
-  list(program="Familias", likelihood=res, time=time)
+  list(program = "Familias", likelihood = res, time = time)
 }
 
 

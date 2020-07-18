@@ -159,7 +159,7 @@ randomTestCase = function(ped = NULL, pedname = NULL, ids = NULL, swapsex = NULL
 }
 
 #' @importFrom utils setTxtProgressBar txtProgressBar
-compareRandom = function(n = 1, programs = NA, verbose = F, store_bad = FALSE, ...) {
+compareRandom = function(n = 1, programs = NULL, verbose = F, store_bad = FALSE, ...) {
   if(store_bad)
     BAD = list()
 
@@ -170,27 +170,32 @@ compareRandom = function(n = 1, programs = NA, verbose = F, store_bad = FALSE, .
   for(i in 1:n) {
     case = randomTestCase(...)
 
-    if(is.na(programs))
+    if(is.null(programs))
       use_programs = c("pedprobr", ifelse(case$Xchrom, "merlin", "Familias"))
     else
       use_programs = programs
 
     if(verbose) {
-      cat(sprintf("%d. %s, %d alleles. Mutmodel: %s.", i, case$pedname, case$nall, case$models))
+      mutmod = paste0(if(case$models == "") "-" else case$models, ".")
+      chr = if(case$Xchrom) "Xchr" else "Auto"
+      cat(sprintf("%d. %4s, %s, %d als, mutmod = %-10s ", i, case$pedname, chr, case$nall, mutmod))
       st = proc.time()
     }
 
     # Run likelihood calculations
     setTimeLimit(elapsed = 10, transient = TRUE)
     results = tryCatch({
-      compare(case$ped, 1, programs = use_programs, verbose = F)
+      compare(case$ped, 1, programs = use_programs, verbose = FALSE)
       }, error = function(e) NULL)
     setTimeLimit(elapsed = Inf, transient = TRUE)
 
     if(verbose) {
       time = (proc.time() - st)['elapsed']
-      cat(sprintf(" Time = %.2f sec\n", time))
+      cat(sprintf("Time = %.2f sec (%s)\n", time, paste0(results$program, collapse="/")))
     }
+
+    if(identical(verbose, 2))
+      print(results)
 
     if(!all_agree(results)) {
       p = case$ped

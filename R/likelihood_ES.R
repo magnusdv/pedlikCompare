@@ -23,15 +23,15 @@ likelihood_ES = function(x, verbose=T) {
   }
   m = getMarkers(x, 1)[[1]]
   if(nAlleles(m) != 2) {
-    if(verbose) cat("skipped. Non-diallelic markers are not implemented for the ElstonStewart package\n")
+    if(verbose) cat("skipped (non-diallelic markers are not implemented)\n")
     return()
   }
   if(allowsMutations(m)) {
-    if(verbose) cat("skipped. Marker allows mutations\n")
+    if(verbose) cat("skipped (mutations are not implemented)\n")
     return()
   }
   if(isXmarker(m)) {
-    if(verbose) cat("skipped. X-linked markers are not implemented for the ElstonStewart package\n")
+    if(verbose) cat("skipped (X-linked markers are not implemented)\n")
     return()
   }
   N = pedsize(x)
@@ -50,6 +50,7 @@ likelihood_ES = function(x, verbose=T) {
   modele.di = ElstonStewart::modele.di
   st = Sys.time()
   res = ElstonStewart::Elston(es_ped, modele.di, list(p=p))$result
+  res = unname(res)   # remove annoying name
 
   time = as.numeric(Sys.time() - st)
   if(verbose) cat(sprintf("finished in %.2f seconds\n", time))

@@ -3,7 +3,6 @@
 \docType{package}
 \name{pedlikCompare}
 \alias{pedlikCompare}
-\alias{pedlikCompare-package}
 \title{pedlikCompare: Compare pedigree likelihoods calculated by different programs}
 \description{
 Several R packages compute pedigree likelihoods, including pedtools,

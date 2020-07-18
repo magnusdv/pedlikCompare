@@ -4,8 +4,12 @@
 \alias{compare}
 \title{Compare likelihood computations}
 \usage{
-compare(x, marker = 1, verbose = TRUE, programs = c("pedprobr",
-  "paramlink", "Familias", "ES", "merlin"))
+compare(
+  x,
+  marker = 1,
+  verbose = TRUE,
+  programs = c("pedprobr", "paramlink", "Familias", "ES", "merlin")
+)
 }
 \arguments{
 \item{x}{A \code{pedtools::ped} object}
