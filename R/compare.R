@@ -16,7 +16,8 @@
 #'   By default all are included.
 #'
 #' @references For MERLIN, see <http://csg.sph.umich.edu/abecasis/Merlin/>.
-
+#'
+#' @importFrom crayon bgGreen bgRed bold
 #' @export
 compare = function(x, marker=1, verbose=TRUE,
                    programs=c("pedprobr", "paramlink", "Familias", "ES",
@@ -57,9 +58,9 @@ compare = function(x, marker=1, verbose=TRUE,
   if(verbose) {
     check  = all_agree(RESULT)
     if(check)
-      cat("\n===> ALL PROGRAMS AGREE! <===\n")
+      cat(crayon::bgGreen$bold("===> ALL PROGRAMS AGREE! <===\n"))
     else
-      cat("\n===> ANSWERS ARE NOT THE SAME <===\n")
+      cat(crayon::bgRed$bold("===> ANSWERS ARE NOT THE SAME <===\n"))
   }
 
   RESULT

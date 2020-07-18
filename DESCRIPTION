@@ -16,7 +16,9 @@ Depends: R (>= 3.5.0),
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: tibble
+Imports: 
+    tibble,
+    crayon
 Suggests: pedprobr,
     paramlink,
     Familias,
@@ -25,4 +27,4 @@ Suggests: pedprobr,
     forrel,
     pedmut
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
