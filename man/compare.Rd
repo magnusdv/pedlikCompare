@@ -32,5 +32,5 @@ the R packages being compared are \code{pedprobr}, \code{paramlink}, \code{Famil
 (via the wrapper pedprobr::merlin) if it is installed on the users computer.
 }
 \references{
-For MERLIN, see \url{http://csg.sph.umich.edu/abecasis/Merlin/}.
+For MERLIN, see \url{https://csg.sph.umich.edu/abecasis/merlin/}.
 }

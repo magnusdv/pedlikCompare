@@ -15,7 +15,7 @@
 #'   of more of the terms "pedprobr", "paramlink", "merlin", "Familias", "ES".
 #'   By default all are included.
 #'
-#' @references For MERLIN, see <http://csg.sph.umich.edu/abecasis/Merlin/>.
+#' @references For MERLIN, see <https://csg.sph.umich.edu/abecasis/merlin/>.
 #'
 #' @importFrom crayon bgGreen bgRed bold
 #' @export
@@ -38,7 +38,7 @@ compare = function(x, marker=1, verbose=TRUE,
 
   programs = match.arg(programs, several.ok = TRUE)
 
-  RESULT = tibble(program=character(), likelihood=numeric(), time=numeric())
+  RESULT = tibble(program=character(), likelihood=numeric(), time=character())
   for(prog in programs) {
 
     FUN = get(sprintf("likelihood_%s", prog))

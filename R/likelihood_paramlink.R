@@ -29,8 +29,9 @@ likelihood_paramlink = function(x, verbose=T, ...) {
     res <- paramlink::likelihood(y, locus1=1, ...)
   )
 
-  time = as.numeric(Sys.time() - st)
-  if(verbose) cat(sprintf("finished in %.2f seconds\n", time))
+  time = format(round(Sys.time() - st, 2))
+  if(verbose)
+    cat(sprintf("finished in %s\n", time))
 
   list(program="paramlink", likelihood=res, time=time)
 }

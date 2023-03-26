@@ -27,8 +27,9 @@ likelihood_merlin = function(x, verbose=T) {
   st = Sys.time()
   res = pedprobr::likelihoodMerlin(x, markers = 1, verbose = FALSE)
 
-  time = as.numeric(Sys.time()-st)
-  if(verbose) cat(sprintf("finished in %.2f seconds\n", time))
+  time = format(round(Sys.time() - st, 2))
+  if(verbose)
+    cat(sprintf("finished in %s\n", time))
 
   list(program="merlin", likelihood=res, time=time)
 }

@@ -52,8 +52,9 @@ likelihood_ES = function(x, verbose=T) {
   res = ElstonStewart::Elston(es_ped, modele.di, list(p=p))$result
   res = unname(res)   # remove annoying name
 
-  time = as.numeric(Sys.time() - st)
-  if(verbose) cat(sprintf("finished in %.2f seconds\n", time))
+  time = format(round(Sys.time() - st, 2))
+  if(verbose)
+    cat(sprintf("finished in %s\n", time))
 
   list(program="ElstonStewart", likelihood=res, time=time)
 }

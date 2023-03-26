@@ -22,9 +22,10 @@ likelihood_pedprobr = function(x, verbose=T, ...) {
 
   st = Sys.time()
   res = pedprobr::likelihood(x, marker1=1, verbose=F, ...)
-  time = as.numeric(Sys.time()-st)
+  time = format(round(Sys.time() - st, 2))
+  if(verbose)
+    cat(sprintf("finished in %s\n", time))
 
-  if(verbose) cat(sprintf("finished in %.2f seconds\n", time))
   list(program="pedprobr", likelihood=res, time=time)
 }
 
