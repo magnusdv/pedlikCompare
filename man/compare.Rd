@@ -12,16 +12,16 @@ compare(
 )
 }
 \arguments{
-\item{x}{A \code{pedtools::ped} object}
+\item{x}{A \code{pedtools::ped} object.}
 
 \item{marker}{Either a \code{pedtools::marker} object, or the name (or index) of
-an attached marker}
+an attached marker.}
 
-\item{verbose}{A logical}
+\item{verbose}{A logical.}
 
-\item{programs}{A character indicating which programs should be included. One
-of more of the terms "pedprobr", "paramlink", "merlin", "Familias", "ES".
-By default all are included.}
+\item{programs}{A character containing some of all of the words "pedprobr",
+"paramlink", "merlin", "Familias", "ES", indicating which programs should
+be includedin the comparison. By default all are included.}
 }
 \description{
 This is the main function of the package. For a given pedigree and a single
