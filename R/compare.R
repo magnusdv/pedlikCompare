@@ -7,17 +7,17 @@
 #' `ElstonStewart`. In addition the external software `MERLIN` may be included
 #' (via the wrapper pedprobr::merlin) if it is installed on the users computer.
 #'
-#' @param x A `pedtools::ped` object
+#' @param x A `pedtools::ped` object.
 #' @param marker Either a `pedtools::marker` object, or the name (or index) of
-#'   an attached marker
-#' @param verbose A logical
-#' @param programs A character indicating which programs should be included. One
-#'   of more of the terms "pedprobr", "paramlink", "merlin", "Familias", "ES".
-#'   By default all are included.
+#'   an attached marker.
+#' @param verbose A logical.
+#' @param programs A character containing some of all of the words "pedprobr",
+#'   "paramlink", "merlin", "Familias", "ES", indicating which programs should
+#'   be includedin the comparison. By default all are included.
 #'
 #' @references For MERLIN, see <https://csg.sph.umich.edu/abecasis/merlin/>.
 #'
-#' @importFrom crayon bgGreen bgRed bold
+#' @importFrom crayon bgGreen bgRed white
 #' @export
 compare = function(x, marker=1, verbose=TRUE,
                    programs=c("pedprobr", "paramlink", "Familias", "ES",
@@ -58,9 +58,9 @@ compare = function(x, marker=1, verbose=TRUE,
   if(verbose) {
     check  = all_agree(RESULT)
     if(check)
-      cat(crayon::bgGreen$bold("===> ALL PROGRAMS AGREE! <===\n"))
+      cat(crayon::bgGreen$white("===> ALL PROGRAMS AGREE! <===\n"))
     else
-      cat(crayon::bgRed$bold("===> ANSWERS ARE NOT THE SAME <===\n"))
+      cat(crayon::bgRed$white("===> ANSWERS ARE NOT THE SAME <===\n"))
   }
 
   RESULT
