@@ -7,6 +7,7 @@
 compare(
   x,
   marker = 1,
+  theta = 0,
   verbose = TRUE,
   programs = c("pedprobr", "paramlink", "Familias", "ES", "merlin")
 )
@@ -17,11 +18,14 @@ compare(
 \item{marker}{Either a \code{pedtools::marker} object, or the name (or index) of
 an attached marker.}
 
+\item{theta}{Theta correction, by default 0. Of the supported packages, only
+"pedprobr" and "Familias" support theta correction.}
+
 \item{verbose}{A logical.}
 
 \item{programs}{A character containing some of all of the words "pedprobr",
 "paramlink", "merlin", "Familias", "ES", indicating which programs should
-be includedin the comparison. By default all are included.}
+be included in the comparison. By default all are included.}
 }
 \description{
 This is the main function of the package. For a given pedigree and a single
@@ -30,6 +34,16 @@ and outputs a table containing the numerical results and timing. By default
 the R packages being compared are \code{pedprobr}, \code{paramlink}, \code{Familias} and
 \code{ElstonStewart}. In addition the external software \code{MERLIN} may be included
 (via the wrapper pedprobr::merlin) if it is installed on the users computer.
+}
+\examples{
+x = nuclearPed(2) |>
+  addMarker() |>
+  setGenotype(marker = 1, ids = females, geno = "1/2")
+
+compare(x)
+
+compare(x, theta = 0.1)
+
 }
 \references{
 For MERLIN, see \url{https://csg.sph.umich.edu/abecasis/merlin/}.
