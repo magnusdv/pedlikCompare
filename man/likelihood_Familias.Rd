@@ -4,12 +4,14 @@
 \alias{likelihood_Familias}
 \title{Pedigree likelihood by Familias}
 \usage{
-likelihood_Familias(x, verbose = T)
+likelihood_Familias(x, verbose = TRUE, ...)
 }
 \arguments{
-\item{x}{A \code{ped} object}
+\item{x}{A \code{ped} object.}
 
-\item{verbose}{A logical}
+\item{verbose}{A logical.}
+
+\item{...}{Further arguments passed on to \code{FamiliasPosterior()}}
 }
 \value{
 A list with 3 entries:

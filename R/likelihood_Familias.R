@@ -3,8 +3,10 @@
 #' Converts from `ped` to Familias objects (pedigree, loci, datamatrix) and uses
 #' [Familias::FamiliasPosterior()] to Compute the pedigree likelihood.
 #'
-#' @param x A `ped` object
-#' @param verbose A logical
+#' @param x A `ped` object.
+#' @param verbose A logical.
+#' @param ... Further arguments passed on to `FamiliasPosterior()`
+#'
 #'
 #' @return A list with 3 entries:
 #'
@@ -13,7 +15,7 @@
 #'   * `time` : timing in seconds
 #'
 #' @export
-likelihood_Familias = function(x, verbose=T) {
+likelihood_Familias = function(x, verbose = TRUE, ...) {
   if(verbose) cat("Program `Familias`...")
   if(!requireNamespace("Familias", quietly = TRUE)) {
     if(verbose) cat("skipped. Package not installed\n")
@@ -29,7 +31,8 @@ likelihood_Familias = function(x, verbose=T) {
   st = Sys.time()
   res = Familias::FamiliasPosterior(FamiliasData$pedigree,
                                     FamiliasData$loci,
-                                    FamiliasData$datamatrix)
+                                    FamiliasData$datamatrix,
+                                    ...)
   res = res$likelihoods
 
   time = format(round(Sys.time() - st, 2))

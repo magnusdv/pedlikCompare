@@ -4,7 +4,7 @@
 \alias{likelihood_paramlink}
 \title{Pedigree likelihood by paramlink}
 \usage{
-likelihood_paramlink(x, verbose = T, ...)
+likelihood_paramlink(x, verbose = TRUE, ...)
 }
 \arguments{
 \item{x}{A \code{ped} object}

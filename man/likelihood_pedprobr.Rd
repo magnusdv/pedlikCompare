@@ -4,7 +4,7 @@
 \alias{likelihood_pedprobr}
 \title{Pedigree likelihood by pedprobr}
 \usage{
-likelihood_pedprobr(x, verbose = T, ...)
+likelihood_pedprobr(x, verbose = TRUE, ...)
 }
 \arguments{
 \item{x}{A \code{ped} object with at least one attached marker.}
@@ -22,5 +22,5 @@ A list with 3 entries:
 }
 }
 \description{
-This uses \code{\link[pedprobr:likelihood]{pedprobr::likelihood()}} to Compute the pedigree likelihood.
+This uses \code{\link[pedprobr:likelihood]{pedprobr::likelihood()}} to compute the pedigree likelihood.
 }

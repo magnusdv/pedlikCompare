@@ -15,18 +15,18 @@
 #'
 #' @importFrom utils capture.output
 #' @export
-likelihood_paramlink = function(x, verbose=T, ...) {
+likelihood_paramlink = function(x, verbose = TRUE, ...) {
   if(verbose) cat("Program `paramlink`...")
   if(!requireNamespace("paramlink", quietly = TRUE)) {
     if(verbose) cat("skipped. Package not installed\n")
     return()
   }
 
-  y = ped2linkdat(x, verbose=F)
+  y = ped2linkdat(x, verbose = FALSE)
 
   st = Sys.time()
   capture.output( # to avoid annoying "Tip: To optimize speed consider breaking ..."
-    res <- paramlink::likelihood(y, locus1=1, ...)
+    res <- paramlink::likelihood(y, locus1 = 1, ...)
   )
 
   time = format(round(Sys.time() - st, 2))
