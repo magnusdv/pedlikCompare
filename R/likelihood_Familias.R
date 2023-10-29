@@ -77,18 +77,40 @@ ped2FamiliasLoci = function(x) {
   lapply(x$MARKERS, marker2FamiliasLocus)
 }
 
+#' @importFrom tools toTitleCase
 marker2FamiliasLocus = function(m) {
   als = alleles(m)
   afr = afreq(m)
   mname = name(m)
   mutmod = attr(m, "mutmod")
 
-  if(is.null(mutmod))
-    Familias::FamiliasLocus(allelenames = als, frequencies = afr, name = mname)
-  else
-    Familias::FamiliasLocus(allelenames = als, frequencies = afr, name = mname,
-                            MutationModel = "Custom",
-                            maleMutationMatrix = mutmod$male,
-                            femaleMutationMatrix = mutmod$female)
+  args = list(allelenames = als, frequencies = afr, name = mname)
+
+  if(!is.null(mutmod)) {
+    params = pedmut::getParams(mutmod, format = 2)
+
+    if(params[["model.F"]] %in% c("equal", "proportional", "stepwise")) {
+      args$femaleMutationModel = params[["model.F"]] |> tools::toTitleCase()
+      args$femaleMutationRate  = params[["rate.F"]]
+      args$femaleMutationRate2  = params[["rate2.F"]]
+      args$femaleMutationRange  = params[["range.F"]]
+    }
+    else {
+      args$femaleMutationModel = "Custom"
+      args$femaleMutationMatrix = mutmod$female
+    }
+    if(params[["model.M"]] %in% c("equal", "proportional", "stepwise")) {
+      args$maleMutationModel = params[["model.M"]] |> tools::toTitleCase()
+      args$maleMutationRate  = params[["rate.M"]]
+      args$maleMutationRate2  = params[["rate2.M"]]
+      args$maleMutationRange  = params[["range.M"]]
+    }
+    else {
+      args$maleMutationModel = "Custom"
+      args$maleMutationMatrix = mutmod$male
+    }
+  }
+
+  do.call(Familias::FamiliasLocus, args)
 }
 
