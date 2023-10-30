@@ -15,7 +15,7 @@ Several R packages are able to calculate pedigree likelihoods, including
 suite](https://magnusdv.github.io/pedsuite/)), **paramlink** (precursor
 to the ped suite), **Familias**, and **ElstonStewart**. Outside of R, a
 widely used program is
-[MERLIN](https://csg.sph.umich.edu/abecasis/Merlin/). The
+[**MERLIN**](https://csg.sph.umich.edu/abecasis/Merlin/). The
 **pedlikCompare** package makes it easy and fun to compare all of these
 programs, both in terms of numeric accuracy and runtime. (For MERLIN to
 be included it must be installed on your computer.)
@@ -33,9 +33,8 @@ follows:
 ``` r
 library(pedtools)
 
-x = nuclearPed(fa = "father", mo = "mother", child = "boy") |> 
-  addMarker(father = "1/2", mother = "1/2", boy = "2/2", 
-            alleles = 1:2, afreq = c(0.5, 0.5))
+x = nuclearPed() |> 
+  addMarker(geno = c("1/2", "1/2", "2/2"), afreq = c(`1` = 0.5, `2` = 0.5))
 ```
 
 Plot the pedigree to check that everything is ok.
@@ -52,11 +51,12 @@ Now let **pedlikCompare** perform its magic! The crucial function is
 ``` r
 library(pedlikCompare)
 result = compare(x)
-#> Program `pedprobr`...finished in 0.01 secs
-#> Program `paramlink`...finished in 0.01 secs
-#> Program `Familias`...finished in 0.02 secs
-#> Program `ElstonStewart`...finished in 0.01 secs
-#> Program `merlin`...finished in 0.68 secs
+#> Program `pedprobr`...finished in 0 secs
+#> Program `paramlink`...finished in 0 secs
+#> Program `Familias`...finished in 0 secs
+#> Program `ElstonStewart`...finished in 0 secs
+#> Program `merlin`...
+#> Executable not found. Use `merlinpath` to supply the path to the MERLIN folder
 #> ===> ALL PROGRAMS AGREE! <===
 ```
 
@@ -65,14 +65,13 @@ As indicated in the output, all programs agreed in this case. The
 
 ``` r
 result
-#> # A tibble: 5 × 4
-#>   program       likelihood lnlik time     
-#>   <chr>              <dbl> <dbl> <chr>    
-#> 1 pedprobr          0.0625 -2.77 0.01 secs
-#> 2 paramlink         0.0625 -2.77 0.01 secs
-#> 3 Familias          0.0625 -2.77 0.02 secs
-#> 4 ElstonStewart     0.0625 -2.77 0.01 secs
-#> 5 merlin            0.0625 -2.77 0.68 secs
+#> # A tibble: 4 × 4
+#>   program       likelihood lnlik time  
+#>   <chr>              <dbl> <dbl> <chr> 
+#> 1 pedprobr          0.0625 -2.77 0 secs
+#> 2 paramlink         0.0625 -2.77 0 secs
+#> 3 Familias          0.0625 -2.77 0 secs
+#> 4 ElstonStewart     0.0625 -2.77 0 secs
 ```
 
 In order to compare the likelihoods, `compare()` calls the function

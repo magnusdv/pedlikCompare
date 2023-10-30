@@ -36,9 +36,7 @@ the R packages being compared are \code{pedprobr}, \code{paramlink}, \code{Famil
 (via the wrapper pedprobr::merlin) if it is installed on the users computer.
 }
 \examples{
-x = nuclearPed(2) |>
-  addMarker() |>
-  setGenotype(marker = 1, ids = females, geno = "1/2")
+x = nuclearPed(2) |> addMarker(`3` = "1/2", `4` = "1/2")
 
 compare(x)
 
