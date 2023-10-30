@@ -21,10 +21,8 @@ MERLIN is treated separately, since it only gives an approximate answer. (It
 reports the log-likelihood rounded to 3 decimals.)
 }
 \examples{
-library(pedtools)
-x = nuclearPed(1)
-m = marker(x, '1'=1:2)
-x = setMarkers(x, m)
+
+x = nuclearPed(1) |> addMarker(`1` = "1/2")
 res = compare(x)
 stopifnot(all_agree(res, answer = 0.5))
 

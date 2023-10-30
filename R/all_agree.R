@@ -11,20 +11,20 @@
 #' @return TRUE or FALSE
 #'
 #' @examples
-#' library(pedtools)
-#' x = nuclearPed(1)
-#' m = marker(x, '1'=1:2)
-#' x = setMarkers(x, m)
+#'
+#' x = nuclearPed(1) |> addMarker(`1` = "1/2")
 #' res = compare(x)
 #' stopifnot(all_agree(res, answer = 0.5))
 #'
 #' @export
 all_agree = function(df, answer=NULL) {
   if(is.null(answer))
-    answer = df$likelihood[1]
+    answer = df$lnlik[1]
+  else
+    answer = log(answer)
 
   df_without_merlin = df[df$program != "merlin", ]
-  test1 = isTRUE(all.equal(df_without_merlin$likelihood,
+  test1 = isTRUE(all.equal(df_without_merlin$lnlik,
                            rep(answer, nrow(df_without_merlin))))
 
   test2 = TRUE
@@ -33,7 +33,7 @@ all_agree = function(df, answer=NULL) {
   if("merlin" %in% df$program) {
     merlin_lnlik = df$lnlik[match("merlin", df$program)]
     deci = decims(merlin_lnlik)
-    test2 = isTRUE(all.equal(merlin_lnlik, round(log(answer), deci)))
+    test2 = isTRUE(all.equal(merlin_lnlik, round(answer, deci)))
   }
 
   test1 && test2
