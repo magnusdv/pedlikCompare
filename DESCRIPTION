@@ -1,6 +1,6 @@
 Package: pedlikCompare
 Title: Compare pedigree likelihoods calculated by different programs
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     person("Magnus Dehli", "Vigeland", , "m.d.vigeland@medisin.uio.no", role = c("aut", "cre"))
 Description: Several R packages compute pedigree likelihoods, including
