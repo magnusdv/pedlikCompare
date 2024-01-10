@@ -3,9 +3,10 @@
 #' Converts the `ped` object to a [paramlink::linkdat] object, and uses
 #' [paramlink::likelihood()] to Compute the likelihood of the first marker.
 #'
-#' @param x A `ped` object
-#' @param verbose A logical
-#' @param ... Further arguments passed on to `paramlink::likelihood()`
+#' @param x A `ped` object with at least one attached marker.
+#' @param unit Unit for reporting runtimes, e.g. "auto" (default) or "secs".
+#' @param verbose A logical.
+#' @param ... Further arguments passed on to `paramlink::likelihood()`.
 #'
 #' @return A list with 3 entries:
 #'
@@ -15,7 +16,7 @@
 #'
 #' @importFrom utils capture.output
 #' @export
-likelihood_paramlink = function(x, verbose = TRUE, ...) {
+likelihood_paramlink = function(x, unit = "auto", verbose = TRUE, ...) {
   if(verbose) cat("Program `paramlink`...")
   if(!requireNamespace("paramlink", quietly = TRUE)) {
     if(verbose) cat("skipped. Package not installed\n")
@@ -29,9 +30,10 @@ likelihood_paramlink = function(x, verbose = TRUE, ...) {
     res <- paramlink::likelihood(y, locus1 = 1, ...)
   )
 
-  time = format(round(Sys.time() - st, 2))
+  time = difftime(Sys.time(), st, units = unit)
+
   if(verbose)
-    cat(sprintf("finished in %s\n", time))
+    cat(sprintf("finished in %s\n", format(round(time, 2))))
 
   list(program="paramlink", likelihood=res, time=time)
 }

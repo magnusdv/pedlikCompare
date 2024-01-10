@@ -12,6 +12,7 @@
 #'   an attached marker.
 #' @param theta Theta correction, by default 0. Of the supported packages, only
 #'   "pedprobr" and "Familias" support theta correction.
+#' @param unit Unit for reporting runtimes, e.g. "auto" (default) or "secs".
 #' @param verbose A logical.
 #' @param programs A character containing some of all of the words "pedprobr",
 #'   "paramlink", "merlin", "Familias", "ES", indicating which programs should
@@ -29,7 +30,7 @@
 #' compare(x, theta = 0.1)
 #'
 #' @export
-compare = function(x, marker = 1, theta = 0, verbose = TRUE,
+compare = function(x, marker = 1, theta = 0, unit = "auto", verbose = TRUE,
                    programs = c("pedprobr", "paramlink", "Familias", "ES", "merlin")) {
   if(!is.ped(x))
     stop2("Input is not a `ped` object")
@@ -53,17 +54,17 @@ compare = function(x, marker = 1, theta = 0, verbose = TRUE,
     programs = setdiff(programs, rem)
   }
 
-  RESULT = tibble(program = character(), likelihood = numeric(), time = character())
+  RESULT = tibble(program = character(), likelihood = numeric(), time = as.difftime(character()))
 
   for(prog in programs) {
 
     res = tryCatch(
       switch(prog,
-             pedprobr = likelihood_pedprobr(x, theta = theta, verbose = verbose),
-             Familias = likelihood_Familias(x, kinship = theta, verbose = verbose),
-             merlin = likelihood_merlin(x, verbose = verbose),
-             ES = likelihood_ES(x, verbose = verbose),
-             paramlink = likelihood_paramlink(x, verbose = verbose)),
+             pedprobr = likelihood_pedprobr(x, theta = theta, unit = unit, verbose = verbose),
+             Familias = likelihood_Familias(x, kinship = theta, unit = unit, verbose = verbose),
+             merlin = likelihood_merlin(x, unit = unit, verbose = verbose),
+             ES = likelihood_ES(x, unit = unit, verbose = verbose),
+             paramlink = likelihood_paramlink(x, unit = unit, verbose = verbose)),
       error = function(e) e)
 
     if(inherits(res, "error")) {
@@ -85,5 +86,6 @@ compare = function(x, marker = 1, theta = 0, verbose = TRUE,
       cat(crayon::bgRed$white("===> ANSWERS ARE NOT THE SAME <===\n"))
   }
 
+  RESULT$time = round(RESULT$time, 3)
   RESULT
 }

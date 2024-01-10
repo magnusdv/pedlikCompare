@@ -4,14 +4,16 @@
 \alias{likelihood_paramlink}
 \title{Pedigree likelihood by paramlink}
 \usage{
-likelihood_paramlink(x, verbose = TRUE, ...)
+likelihood_paramlink(x, unit = "auto", verbose = TRUE, ...)
 }
 \arguments{
-\item{x}{A \code{ped} object}
+\item{x}{A \code{ped} object with at least one attached marker.}
 
-\item{verbose}{A logical}
+\item{unit}{Unit for reporting runtimes, e.g. "auto" (default) or "secs".}
 
-\item{...}{Further arguments passed on to \code{paramlink::likelihood()}}
+\item{verbose}{A logical.}
+
+\item{...}{Further arguments passed on to \code{paramlink::likelihood()}.}
 }
 \value{
 A list with 3 entries:

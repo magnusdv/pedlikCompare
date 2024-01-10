@@ -6,6 +6,7 @@
 #' and does not have a nontrivial mutation model.
 #'
 #' @param x A `ped` object with at least one attached marker.
+#' @param unit Unit for reporting runtimes, e.g. "auto" (default) or "secs".
 #' @param verbose A logical
 #'
 #' @return A list with 3 entries:
@@ -15,7 +16,7 @@
 #'   * `time` : timing in seconds
 #'
 #' @export
-likelihood_ES = function(x, verbose=T) {
+likelihood_ES = function(x, unit = "auto", verbose=T) {
   if(verbose) cat("Program `ElstonStewart`...")
   if(!requireNamespace("ElstonStewart", quietly = TRUE)) {
     if(verbose) cat("skipped. Package not installed\n")
@@ -52,9 +53,10 @@ likelihood_ES = function(x, verbose=T) {
   res = ElstonStewart::Elston(es_ped, modele.di, list(p=p))$result
   res = unname(res)   # remove annoying name
 
-  time = format(round(Sys.time() - st, 2))
+  time = difftime(Sys.time(), st, units = unit)
+
   if(verbose)
-    cat(sprintf("finished in %s\n", time))
+    cat(sprintf("finished in %s\n", format(round(time, 2))))
 
   list(program="ElstonStewart", likelihood=res, time=time)
 }

@@ -4,21 +4,23 @@
 \alias{likelihood_pedprobr}
 \title{Pedigree likelihood by pedprobr}
 \usage{
-likelihood_pedprobr(x, verbose = TRUE, ...)
+likelihood_pedprobr(x, unit = "auto", verbose = TRUE, ...)
 }
 \arguments{
 \item{x}{A \code{ped} object with at least one attached marker.}
 
-\item{verbose}{A logical}
+\item{unit}{Unit for reporting runtimes, e.g. "auto" (default) or "secs".}
 
-\item{...}{Further arguments passed on to \code{pedprobr::likelihood()}}
+\item{verbose}{A logical.}
+
+\item{...}{Further arguments passed on to \code{pedprobr::likelihood()}.}
 }
 \value{
 A list with 3 entries:
 \itemize{
 \item \code{program} : "pedprobr"
 \item \code{likelihood} : the likelihood as computed by \code{\link[pedprobr:likelihood]{pedprobr::likelihood()}}
-\item \code{time} : timing in seconds
+\item \code{time} : runtime
 }
 }
 \description{

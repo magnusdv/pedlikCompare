@@ -4,23 +4,25 @@
 \alias{likelihood_merlin}
 \title{Pedigree likelihood by MERLIN}
 \usage{
-likelihood_merlin(x, verbose = T)
+likelihood_merlin(x, unit = "auto", verbose = TRUE)
 }
 \arguments{
 \item{x}{A \code{ped} object with at least one attached marker.}
 
-\item{verbose}{A logical}
+\item{unit}{Unit for reporting runtimes, e.g. "auto" (default) or "secs".}
+
+\item{verbose}{A logical.}
 }
 \value{
 A list with 3 entries:
 \itemize{
 \item \code{program} : "merlin"
 \item \code{likelihood} : the likelihood as computed by \code{\link[pedprobr:merlin]{pedprobr::likelihoodMerlin()}}
-\item \code{time} : timing in seconds
+\item \code{time} : runtime
 }
 }
 \description{
-This uses the MERLIN wrapper \code{\link[pedprobr:merlin]{pedprobr::likelihoodMerlin()}} to Compute
+This uses the MERLIN wrapper \code{\link[pedprobr:merlin]{pedprobr::likelihoodMerlin()}} to compute
 the likelihood of the first marker. Skipped if the marker models mutations
 (since MERLIN does not handle this).
 }

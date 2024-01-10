@@ -4,10 +4,12 @@
 \alias{likelihood_ES}
 \title{Pedigree likelihood by ElstonStewart}
 \usage{
-likelihood_ES(x, verbose = T)
+likelihood_ES(x, unit = "auto", verbose = T)
 }
 \arguments{
 \item{x}{A \code{ped} object with at least one attached marker.}
+
+\item{unit}{Unit for reporting runtimes, e.g. "auto" (default) or "secs".}
 
 \item{verbose}{A logical}
 }

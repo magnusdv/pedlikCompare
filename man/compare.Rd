@@ -8,6 +8,7 @@ compare(
   x,
   marker = 1,
   theta = 0,
+  unit = "auto",
   verbose = TRUE,
   programs = c("pedprobr", "paramlink", "Familias", "ES", "merlin")
 )
@@ -20,6 +21,8 @@ an attached marker.}
 
 \item{theta}{Theta correction, by default 0. Of the supported packages, only
 "pedprobr" and "Familias" support theta correction.}
+
+\item{unit}{Unit for reporting runtimes, e.g. "auto" (default) or "secs".}
 
 \item{verbose}{A logical.}
 
