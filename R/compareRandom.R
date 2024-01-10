@@ -38,9 +38,8 @@ randomTestCase = function(ped = NULL, pedname = NULL, ids = NULL, swapsex = NULL
 
     if(pedname == "RAND") {
       founders = rpois(1, 2) + 1
-      g = sample(founders + 2:3, size= 1)
-      ped = randomPed(g, founders)
-      if(is.pedList(ped)) ped = ped[[1]]
+      matings = sample(founders + 2:3, size= 1)
+      ped = randomPed(founders + matings, founders)
     }
     else
       ped = PEDS[[pedname]]
