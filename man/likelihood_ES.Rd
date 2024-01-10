@@ -11,19 +11,19 @@ likelihood_ES(x, unit = "auto", verbose = T)
 
 \item{unit}{Unit for reporting runtimes, e.g. "auto" (default) or "secs".}
 
-\item{verbose}{A logical}
+\item{verbose}{A logical.}
 }
 \value{
 A list with 3 entries:
 \itemize{
 \item \code{program} : "ElstonStewart"
-\item \code{likelihood} : the likelihood as computed by \code{\link[ElstonStewart:Elston]{ElstonStewart::Elston()}}
+\item \code{likelihood} : the likelihood as computed by \code{ElstonStewart::Elston()}
 \item \code{time} : timing in seconds
 }
 }
 \description{
-Converts the pedigree and its first marker to a \link[ElstonStewart:es.pedigree]{ElstonStewart::es.pedigree}
-object and uses \code{\link[ElstonStewart:Elston]{ElstonStewart::Elston()}} to Compute the pedigree likelihood.
-This is only implemented for the case when the marker has exactly 2 alleles
-and does not have a nontrivial mutation model.
+Converts the pedigree and its first marker to a
+\code{ElstonStewart::es.pedigree()} object and uses \code{ElstonStewart::Elston()} to
+compute the pedigree likelihood. This is only implemented for the case when
+the marker has exactly 2 alleles and does not allow mutation models.
 }

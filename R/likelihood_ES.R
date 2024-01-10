@@ -1,18 +1,18 @@
 #' Pedigree likelihood by ElstonStewart
 #'
-#' Converts the pedigree and its first marker to a [ElstonStewart::es.pedigree]
-#' object and uses [ElstonStewart::Elston()] to Compute the pedigree likelihood.
-#' This is only implemented for the case when the marker has exactly 2 alleles
-#' and does not have a nontrivial mutation model.
+#' Converts the pedigree and its first marker to a
+#' `ElstonStewart::es.pedigree()` object and uses `ElstonStewart::Elston()` to
+#' compute the pedigree likelihood. This is only implemented for the case when
+#' the marker has exactly 2 alleles and does not allow mutation models.
 #'
 #' @param x A `ped` object with at least one attached marker.
 #' @param unit Unit for reporting runtimes, e.g. "auto" (default) or "secs".
-#' @param verbose A logical
+#' @param verbose A logical.
 #'
 #' @return A list with 3 entries:
 #'
 #'   * `program` : "ElstonStewart"
-#'   * `likelihood` : the likelihood as computed by [ElstonStewart::Elston()]
+#'   * `likelihood` : the likelihood as computed by `ElstonStewart::Elston()`
 #'   * `time` : timing in seconds
 #'
 #' @export
