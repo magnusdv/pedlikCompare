@@ -10,7 +10,7 @@ compare(
   theta = 0,
   unit = "auto",
   verbose = TRUE,
-  programs = c("pedprobr", "Familias", "ES", "merlin"),
+  programs = c("pedprobr", "Familias", "merlin"),
   ...
 )
 }
@@ -28,8 +28,8 @@ an attached marker.}
 \item{verbose}{A logical.}
 
 \item{programs}{A character containing some of all of the words "pedprobr",
-"merlin", "Familias", "ES", indicating which programs should
-be included in the comparison. By default all are included.}
+"merlin", "Familias", "ES", indicating which programs should be included in
+the comparison. By default all except "ES" are included.}
 
 \item{...}{Further arguments passed on to \code{\link[pedprobr:likelihood]{pedprobr::likelihood()}}.}
 }
@@ -37,9 +37,9 @@ be included in the comparison. By default all are included.}
 This is the main function of the package. For a given pedigree and a single
 marker object, it computes the pedigree likelihood using different programs
 and outputs a table containing the numerical results and timing. By default
-the R packages being compared are \code{pedprobr}, \code{Familias} and
-\code{ElstonStewart}. In addition the external software \code{MERLIN} may be included
-(via the wrapper pedprobr::merlin) if it is installed on the users computer.
+the R packages being compared are \code{pedprobr}, \code{Familias} and \code{ElstonStewart}.
+In addition the external software \code{MERLIN} may be included (via the wrapper
+pedprobr::merlin) if it is installed on the users computer.
 }
 \examples{
 x = nuclearPed(2) |> addMarker(`3` = "1/2", `4` = "1/2")

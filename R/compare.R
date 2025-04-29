@@ -3,9 +3,9 @@
 #' This is the main function of the package. For a given pedigree and a single
 #' marker object, it computes the pedigree likelihood using different programs
 #' and outputs a table containing the numerical results and timing. By default
-#' the R packages being compared are `pedprobr`, `Familias` and
-#' `ElstonStewart`. In addition the external software `MERLIN` may be included
-#' (via the wrapper pedprobr::merlin) if it is installed on the users computer.
+#' the R packages being compared are `pedprobr`, `Familias` and `ElstonStewart`.
+#' In addition the external software `MERLIN` may be included (via the wrapper
+#' pedprobr::merlin) if it is installed on the users computer.
 #'
 #' @param x A `pedtools::ped` object.
 #' @param marker Either a `pedtools::marker` object, or the name (or index) of
@@ -15,8 +15,8 @@
 #' @param unit Unit for reporting runtimes, e.g. "auto" (default) or "secs".
 #' @param verbose A logical.
 #' @param programs A character containing some of all of the words "pedprobr",
-#'   "merlin", "Familias", "ES", indicating which programs should
-#'   be included in the comparison. By default all are included.
+#'   "merlin", "Familias", "ES", indicating which programs should be included in
+#'   the comparison. By default all except "ES" are included.
 #' @param ... Further arguments passed on to [pedprobr::likelihood()].
 #'
 #' @references For MERLIN, see <https://csg.sph.umich.edu/abecasis/merlin/>.
@@ -31,7 +31,7 @@
 #' @importFrom crayon bgGreen bgRed white
 #' @export
 compare = function(x, marker = 1, theta = 0, unit = "auto", verbose = TRUE,
-                   programs = c("pedprobr", "Familias", "ES", "merlin"), ...) {
+                   programs = c("pedprobr", "Familias", "merlin"), ...) {
   if(!is.ped(x))
     stop2("Input is not a `ped` object")
   if(is.marker(marker)) {
