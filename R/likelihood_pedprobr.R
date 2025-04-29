@@ -9,12 +9,12 @@
 #'
 #' @return A list with 3 entries:
 #'
-#'   * `program` : "pedprobr"
-#'   * `likelihood` : the likelihood as computed by [pedprobr::likelihood()]
-#'   * `time` : runtime
+#' * `program`: "pedprobr"
+#' * `likelihood`: the likelihood computed by [pedprobr::likelihood()]
+#' * `time`: runtime
 #'
 #' @export
-likelihood_pedprobr = function(x, unit = "auto", verbose = TRUE, ...) {
+likelihood_pedprobr = function(x, unit = "auto", verbose = TRUE, debug = FALSE, ...) {
   if(verbose) cat("Program `pedprobr`...")
   if(!requireNamespace("pedprobr", quietly = TRUE)) {
     if(verbose) cat("skipped. Package not installed\n")
@@ -22,7 +22,7 @@ likelihood_pedprobr = function(x, unit = "auto", verbose = TRUE, ...) {
   }
 
   st = Sys.time()
-  res = pedprobr::likelihood(x, markers = 1, verbose = FALSE, ...)
+  res = pedprobr::likelihood(x, markers = 1, verbose = debug, ...)
   time = difftime(Sys.time(), st, units = unit)
 
   if(verbose)

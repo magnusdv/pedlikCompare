@@ -16,9 +16,9 @@ likelihood_ES(x, unit = "auto", verbose = T)
 \value{
 A list with 3 entries:
 \itemize{
-\item \code{program} : "ElstonStewart"
-\item \code{likelihood} : the likelihood as computed by \code{ElstonStewart::Elston()}
-\item \code{time} : timing in seconds
+\item \code{program}: "ElstonStewart"
+\item \code{likelihood}: the likelihood computed by \code{ElstonStewart::Elston()}
+\item \code{time}: timing in seconds
 }
 }
 \description{

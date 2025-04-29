@@ -18,9 +18,9 @@ likelihood_Familias(x, unit = "auto", verbose = TRUE, ...)
 \value{
 A list with 3 entries:
 \itemize{
-\item \code{program} : "Familias"
-\item \code{likelihood} : the likelihood as computed by \code{\link[Familias:FamiliasPosterior]{Familias::FamiliasPosterior()}}
-\item \code{time} : runtime
+\item \code{program}: "Familias"
+\item \code{likelihood}: the likelihood computed by \code{\link[Familias:FamiliasPosterior]{Familias::FamiliasPosterior()}}
+\item \code{time}: runtime
 }
 }
 \description{

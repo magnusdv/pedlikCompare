@@ -4,7 +4,7 @@
 \alias{likelihood_pedprobr}
 \title{Pedigree likelihood by pedprobr}
 \usage{
-likelihood_pedprobr(x, unit = "auto", verbose = TRUE, ...)
+likelihood_pedprobr(x, unit = "auto", verbose = TRUE, debug = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{ped} object with at least one attached marker.}
@@ -18,9 +18,9 @@ likelihood_pedprobr(x, unit = "auto", verbose = TRUE, ...)
 \value{
 A list with 3 entries:
 \itemize{
-\item \code{program} : "pedprobr"
-\item \code{likelihood} : the likelihood as computed by \code{\link[pedprobr:likelihood]{pedprobr::likelihood()}}
-\item \code{time} : runtime
+\item \code{program}: "pedprobr"
+\item \code{likelihood}: the likelihood computed by \code{\link[pedprobr:likelihood]{pedprobr::likelihood()}}
+\item \code{time}: runtime
 }
 }
 \description{

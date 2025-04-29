@@ -11,9 +11,9 @@
 #'
 #' @return A list with 3 entries:
 #'
-#'   * `program` : "ElstonStewart"
-#'   * `likelihood` : the likelihood as computed by `ElstonStewart::Elston()`
-#'   * `time` : timing in seconds
+#' * `program`: "ElstonStewart"
+#' * `likelihood`: the likelihood computed by `ElstonStewart::Elston()`
+#' * `time`: timing in seconds
 #'
 #' @export
 likelihood_ES = function(x, unit = "auto", verbose=T) {

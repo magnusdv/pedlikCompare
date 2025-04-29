@@ -10,7 +10,8 @@ compare(
   theta = 0,
   unit = "auto",
   verbose = TRUE,
-  programs = c("pedprobr", "Familias", "ES", "merlin")
+  programs = c("pedprobr", "Familias", "ES", "merlin"),
+  ...
 )
 }
 \arguments{
@@ -29,6 +30,8 @@ an attached marker.}
 \item{programs}{A character containing some of all of the words "pedprobr",
 "merlin", "Familias", "ES", indicating which programs should
 be included in the comparison. By default all are included.}
+
+\item{...}{Further arguments passed on to \code{\link[pedprobr:likelihood]{pedprobr::likelihood()}}.}
 }
 \description{
 This is the main function of the package. For a given pedigree and a single

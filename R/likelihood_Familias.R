@@ -11,9 +11,9 @@
 #'
 #' @return A list with 3 entries:
 #'
-#'   * `program` : "Familias"
-#'   * `likelihood` : the likelihood as computed by [Familias::FamiliasPosterior()]
-#'   * `time` : runtime
+#' * `program`: "Familias"
+#' * `likelihood`: the likelihood computed by [Familias::FamiliasPosterior()]
+#' * `time`: runtime
 #'
 #' @export
 likelihood_Familias = function(x, unit = "auto", verbose = TRUE, ...) {
