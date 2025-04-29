@@ -1,5 +1,5 @@
 
-progs = c("pedprobr", "paramlink", "merlin", "Familias", "ElstonStewart")
+progs = c("pedprobr", "merlin", "Familias", "ElstonStewart")
 p = 0.9; q = 1-p
 
 test_that("all programs work", {

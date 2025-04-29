@@ -10,7 +10,7 @@ compare(
   theta = 0,
   unit = "auto",
   verbose = TRUE,
-  programs = c("pedprobr", "paramlink", "Familias", "ES", "merlin")
+  programs = c("pedprobr", "Familias", "ES", "merlin")
 )
 }
 \arguments{
@@ -27,14 +27,14 @@ an attached marker.}
 \item{verbose}{A logical.}
 
 \item{programs}{A character containing some of all of the words "pedprobr",
-"paramlink", "merlin", "Familias", "ES", indicating which programs should
+"merlin", "Familias", "ES", indicating which programs should
 be included in the comparison. By default all are included.}
 }
 \description{
 This is the main function of the package. For a given pedigree and a single
 marker object, it computes the pedigree likelihood using different programs
 and outputs a table containing the numerical results and timing. By default
-the R packages being compared are \code{pedprobr}, \code{paramlink}, \code{Familias} and
+the R packages being compared are \code{pedprobr}, \code{Familias} and
 \code{ElstonStewart}. In addition the external software \code{MERLIN} may be included
 (via the wrapper pedprobr::merlin) if it is installed on the users computer.
 }

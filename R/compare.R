@@ -3,7 +3,7 @@
 #' This is the main function of the package. For a given pedigree and a single
 #' marker object, it computes the pedigree likelihood using different programs
 #' and outputs a table containing the numerical results and timing. By default
-#' the R packages being compared are `pedprobr`, `paramlink`, `Familias` and
+#' the R packages being compared are `pedprobr`, `Familias` and
 #' `ElstonStewart`. In addition the external software `MERLIN` may be included
 #' (via the wrapper pedprobr::merlin) if it is installed on the users computer.
 #'
@@ -15,12 +15,11 @@
 #' @param unit Unit for reporting runtimes, e.g. "auto" (default) or "secs".
 #' @param verbose A logical.
 #' @param programs A character containing some of all of the words "pedprobr",
-#'   "paramlink", "merlin", "Familias", "ES", indicating which programs should
+#'   "merlin", "Familias", "ES", indicating which programs should
 #'   be included in the comparison. By default all are included.
+#' @param ... Further arguments passed on to [pedprobr::likelihood()].
 #'
 #' @references For MERLIN, see <https://csg.sph.umich.edu/abecasis/merlin/>.
-#'
-#' @importFrom crayon bgGreen bgRed white
 #'
 #' @examples
 #' x = nuclearPed(2) |> addMarker(`3` = "1/2", `4` = "1/2")
@@ -29,9 +28,10 @@
 #'
 #' compare(x, theta = 0.1)
 #'
+#' @importFrom crayon bgGreen bgRed white
 #' @export
 compare = function(x, marker = 1, theta = 0, unit = "auto", verbose = TRUE,
-                   programs = c("pedprobr", "paramlink", "Familias", "ES", "merlin")) {
+                   programs = c("pedprobr", "Familias", "ES", "merlin"), ...) {
   if(!is.ped(x))
     stop2("Input is not a `ped` object")
   if(is.marker(marker)) {
@@ -60,11 +60,10 @@ compare = function(x, marker = 1, theta = 0, unit = "auto", verbose = TRUE,
 
     res = tryCatch(
       switch(prog,
-             pedprobr = likelihood_pedprobr(x, theta = theta, unit = unit, verbose = verbose),
+             pedprobr = likelihood_pedprobr(x, theta = theta, unit = unit, verbose = verbose, ...),
              Familias = likelihood_Familias(x, kinship = theta, unit = unit, verbose = verbose),
              merlin = likelihood_merlin(x, unit = unit, verbose = verbose),
-             ES = likelihood_ES(x, unit = unit, verbose = verbose),
-             paramlink = likelihood_paramlink(x, unit = unit, verbose = verbose)),
+             ES = likelihood_ES(x, unit = unit, verbose = verbose)),
       error = function(e) e)
 
     if(inherits(res, "error")) {

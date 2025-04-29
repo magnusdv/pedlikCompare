@@ -11,10 +11,9 @@ strengths and weaknesses of each programs, potentially pinpointing
 computational bottlenecks that may be improved.
 
 Several R packages are able to calculate pedigree likelihoods, including
-**pedprobr** (part of the [ped
-suite](https://magnusdv.github.io/pedsuite/)), **paramlink** (precursor
-to the ped suite), **Familias**, and **ElstonStewart**. Outside of R, a
-widely used program is
+**pedprobr** (part of the
+[pedsuite](https://magnusdv.github.io/pedsuite/)), **Familias**, and
+**ElstonStewart**. Outside of R, a widely used program is
 [**MERLIN**](https://csg.sph.umich.edu/abecasis/Merlin/). The
 **pedlikCompare** package makes it easy and fun to compare all of these
 programs, both in terms of numeric accuracy and runtime. (For MERLIN to
@@ -52,11 +51,9 @@ Now let **pedlikCompare** perform its magic! The crucial function is
 library(pedlikCompare)
 result = compare(x)
 #> Program `pedprobr`...finished in 0 secs
-#> Program `paramlink`...finished in 0 secs
 #> Program `Familias`...finished in 0 secs
-#> Program `ElstonStewart`...finished in 0 secs
-#> Program `merlin`...
-#> Executable not found. Use `merlinpath` to supply the path to the MERLIN folder
+#> Program `ElstonStewart`...skipped. Package not installed
+#> Program `merlin`...finished in 0.25 secs
 #> ===> ALL PROGRAMS AGREE! <===
 ```
 
@@ -65,13 +62,12 @@ As indicated in the output, all programs agreed in this case. The
 
 ``` r
 result
-#> # A tibble: 4 × 4
-#>   program       likelihood lnlik time  
-#>   <chr>              <dbl> <dbl> <chr> 
-#> 1 pedprobr          0.0625 -2.77 0 secs
-#> 2 paramlink         0.0625 -2.77 0 secs
-#> 3 Familias          0.0625 -2.77 0 secs
-#> 4 ElstonStewart     0.0625 -2.77 0 secs
+#> # A tibble: 3 × 4
+#>   program  likelihood lnlik time      
+#>   <chr>         <dbl> <dbl> <drtn>    
+#> 1 pedprobr     0.0625 -2.77 0.002 secs
+#> 2 Familias     0.0625 -2.77 0.003 secs
+#> 3 merlin       0.0625 -2.77 0.250 secs
 ```
 
 In order to compare the likelihoods, `compare()` calls the function
