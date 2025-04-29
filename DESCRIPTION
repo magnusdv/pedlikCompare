@@ -1,19 +1,19 @@
 Package: pedlikCompare
 Title: Compare pedigree likelihoods calculated by different programs
-Version: 0.2.2
+Version: 0.3.0
 Authors@R: 
     person("Magnus Dehli", "Vigeland", , "m.d.vigeland@medisin.uio.no", role = c("aut", "cre"))
 Description: Several R packages compute pedigree likelihoods, including
-    'pedprobr', 'paramlink', 'Familias', 'ElstonStewart'. Outside of R, a
-    widely used program is 'MERLIN'. This purpose of this package is to
-    facilitate comparisons of these programs, both in terms of numeric
-    accuracy and timings. The 'pedtools' package is used as starting point
-    for creating pedigrees and markers, which are then converted to other
-    formats as needed.
+    'pedprobr', 'Familias', 'ElstonStewart'. Outside of R, a widely used
+    program is 'MERLIN'. This purpose of this package is to facilitate
+    comparisons of these programs, both in terms of numeric accuracy and
+    timings. The 'pedtools' package is used as starting point for creating
+    pedigrees and markers, which are then converted to other formats as
+    needed.
 License: GPL-3
 Depends: 
-    R (>= 4.1.0),
-    pedtools
+    pedtools,
+    R (>= 4.2.0)
 Imports: 
     crayon,
     tibble
@@ -21,10 +21,9 @@ Suggests:
     ElstonStewart,
     Familias,
     forrel,
-    paramlink,
     pedmut,
     pedprobr,
     testthat
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
