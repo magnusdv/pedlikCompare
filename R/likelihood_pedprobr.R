@@ -5,6 +5,8 @@
 #' @param x A `ped` object with at least one attached marker.
 #' @param unit Unit for reporting runtimes, e.g. "auto" (default) or "secs".
 #' @param verbose A logical.
+#' @param debug A logical. If `TRUE`, messages [pedprobr::likelihood()] are
+#'   printed.
 #' @param ... Further arguments passed on to `pedprobr::likelihood()`.
 #'
 #' @return A list with 3 entries:

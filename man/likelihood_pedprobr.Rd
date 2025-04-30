@@ -13,6 +13,9 @@ likelihood_pedprobr(x, unit = "auto", verbose = TRUE, debug = FALSE, ...)
 
 \item{verbose}{A logical.}
 
+\item{debug}{A logical. If \code{TRUE}, messages \code{\link[pedprobr:likelihood]{pedprobr::likelihood()}} are
+printed.}
+
 \item{...}{Further arguments passed on to \code{pedprobr::likelihood()}.}
 }
 \value{
