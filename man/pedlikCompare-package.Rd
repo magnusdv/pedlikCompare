@@ -6,7 +6,7 @@
 \alias{pedlikCompare-package}
 \title{pedlikCompare: Compare pedigree likelihoods calculated by different programs}
 \description{
-Several R packages compute pedigree likelihoods, including 'pedprobr', 'Familias', 'ElstonStewart'. Outside of R, a widely used program is 'MERLIN'. This purpose of this package is to facilitate comparisons of these programs, both in terms of numeric accuracy and timings. The 'pedtools' package is used as starting point for creating pedigrees and markers, which are then converted to other formats as needed.
+Several R packages compute pedigree likelihoods, including 'pedprobr', 'Familias', and (the non-R) software 'MERLIN'. This purpose of this package is to facilitate comparisons of these programs, both in terms of numeric accuracy and timings. The 'pedtools' package is used as starting point for creating pedigrees and markers, which are then converted to other formats as needed.
 }
 \author{
 \strong{Maintainer}: Magnus Dehli Vigeland \email{m.d.vigeland@medisin.uio.no}
