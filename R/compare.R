@@ -28,7 +28,8 @@
 #'
 #' compare(x, theta = 0.1)
 #'
-#' @importFrom crayon bgGreen bgRed white
+#' @importFrom cli symbol
+#' @importFrom crayon green red white
 #' @export
 compare = function(x, marker = 1, theta = 0, unit = "auto", verbose = TRUE,
                    programs = c("pedprobr", "Familias", "merlin"), ...) {
@@ -78,11 +79,11 @@ compare = function(x, marker = 1, theta = 0, unit = "auto", verbose = TRUE,
   RESULT = add_column(RESULT, lnlik = log(RESULT$likelihood), .after = "likelihood")
 
   if(verbose) {
-    check  = all_agree(RESULT)
-    if(check)
-      cat(crayon::bgGreen$white("===> ALL PROGRAMS AGREE! <===\n"))
+    if(all_agree(RESULT))
+      mess = green(cli::symbol$tick, "ALL PROGRAMS AGREE")
     else
-      cat(crayon::bgRed$white("===> ANSWERS ARE NOT THE SAME <===\n"))
+      mess = red(cli::symbol$cross, "ANSWERS DISAGREE")
+    cat("\n", mess, "\n\n")
   }
 
   RESULT$time = round(RESULT$time, 3)

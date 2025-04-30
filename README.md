@@ -13,15 +13,16 @@ computational bottlenecks that may be improved.
 Several R packages are able to calculate pedigree likelihoods, including
 **pedprobr** (part of the
 [pedsuite](https://magnusdv.github.io/pedsuite/)), **Familias**, and
-**ElstonStewart**. Outside of R, a widely used program is
+**ElstonStewart** (currently archived on CRAN). Outside of R, a widely
+used program is
 [**MERLIN**](https://csg.sph.umich.edu/abecasis/Merlin/). The
 **pedlikCompare** package makes it easy and fun to compare all of these
-programs, both in terms of numeric accuracy and runtime. (For MERLIN to
-be included it must be installed on your computer.)
+programs, both in terms of numeric accuracy and runtime.
 
 **pedlikCompare** imports **pedtools** for creating pedigrees and
 markers. Conversion to all other formats are done automatically when
-needed.
+needed. Note that for MERLIN to be included, it must be installed on
+your computer.
 
 ## Example
 
@@ -52,9 +53,9 @@ library(pedlikCompare)
 result = compare(x)
 #> Program `pedprobr`...finished in 0 secs
 #> Program `Familias`...finished in 0 secs
-#> Program `ElstonStewart`...skipped. Package not installed
-#> Program `merlin`...finished in 0.25 secs
-#> ===> ALL PROGRAMS AGREE! <===
+#> Program `merlin`...finished in 0.23 secs
+#> 
+#>  ✔ ALL PROGRAMS AGREE
 ```
 
 As indicated in the output, all programs agreed in this case. The
@@ -65,9 +66,9 @@ result
 #> # A tibble: 3 × 4
 #>   program  likelihood lnlik time      
 #>   <chr>         <dbl> <dbl> <drtn>    
-#> 1 pedprobr     0.0625 -2.77 0.002 secs
-#> 2 Familias     0.0625 -2.77 0.003 secs
-#> 3 merlin       0.0625 -2.77 0.250 secs
+#> 1 pedprobr     0.0625 -2.77 0.003 secs
+#> 2 Familias     0.0625 -2.77 0.002 secs
+#> 3 merlin       0.0625 -2.77 0.234 secs
 ```
 
 In order to compare the likelihoods, `compare()` calls the function
